@@ -33,6 +33,6 @@ urlpatterns += [
 
 urlpatterns += [
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
-]
+]  # Here what we do is redirect all the root views to root/catalog in the website
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
