@@ -28,7 +28,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('catalog/', include('catalog.urls')),
+    path('catalog/', include('catalog.urls')),  # What the "include" function does, is to treat the remaining urls for further processing.
 ]
 
 urlpatterns += [
