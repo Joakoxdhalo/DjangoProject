@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <hr>
+  <h1>Title: {{ generic_detailed_book.title }}</h1>
+  <ul>
+  	<li><p><strong>Author:</strong> <a href="">{{ generic_detailed_book.author }}</a></p></li> <!-- author detail link not yet defined -->
+  	<li><strong>Summary:</strong></li> <p>{{ generic_detailed_book.summary }}</p>
+  	<li><p><strong>ISBN:</strong> {{ generic_detailed_book.isbn }}</p></li>
+  	<!--<p><strong>Language:</strong> {{ generic_detailed_book.language }}</p>  -->
+  	<li><p><strong>Genre:</strong> {% for genre in generic_detailed_book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p></li>
+  </ul>
+  <div style="margin-left:20px;margin-top:40px">
+  	<hr>
+    <h4>Copies</h4>
+
+    {% for copy in generic_detailed_book.bookinstance_set.all %}
+      
+      <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+      {% if copy.status != 'a' %}
+        <p><strong>Due to be returned:</strong> {{copy.due_back}}</p>
+      {% endif %}
+      <p><strong>Imprint:</strong> {{copy.imprint}}</p>
+      <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+      <div style="margin-left:20px;margin-top:40px">
+    {% endfor %}
+  </div>
+{% endblock %}

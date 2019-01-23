@@ -53,3 +53,9 @@ class BookListView(generic.ListView):
     #         context['some_data'] = 'This is just some data'
     #         return context
     paginate_by = 5
+
+#  This is a "class based generic **detail** view"
+class BookDetailView(generic.DetailView):
+    model = Book
+    context_object_name = 'generic_detailed_book'
+    template_name = 'book_detail/generic_view_book_detail_template.html'
