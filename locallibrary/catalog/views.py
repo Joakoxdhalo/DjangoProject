@@ -31,11 +31,14 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
+#  This is a "class based generic **list** view"
 class BookListView(generic.ListView):
     model = Book
     context_object_name = 'generic_book_list'   # Overwritting the list name
-    queryset = Book.objects.filter(genre__icontains='fiction')[:5]  # Get 5 books containing the genre "fiction"
-    template_name = 'books/generic_view_template.html'  # Overwritting the template file name
+    queryset = Book.objects.all()
+    # The following is, when we want to see book, applying some filters:
+    # queryset = Book.objects.filter(title__icontains='Colombia')[:5]  # Get 5 books containing the word "Colombia" in the title
+    template_name = 'books/generic_view_books_template.html'  # Overwritting the template file name
 
     # Option to overwrite the list object returned in the queryset:
 
@@ -43,10 +46,10 @@ class BookListView(generic.ListView):
     #     return Book.objects.filter(title__icontains='war')[:5]
 
     # Option to add some context data in the "class based generic list view function":
-
     # def get_context_data(self, **kwargs):
     #         # Call the base implementation first to get the context
     #         context = super(BookListView, self).get_context_data(**kwargs)
     #         # Create any data and add it to the context
     #         context['some_data'] = 'This is just some data'
     #         return context
+    paginate_by = 5
