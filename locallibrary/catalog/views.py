@@ -47,7 +47,7 @@ class BookListView(generic.ListView):
     #         # Create any data and add it to the context
     #         context['some_data'] = 'This is just some data'
     #         return context
-    paginate_by = 5
+    paginate_by = 8
 
 
 #  This is a "class based generic **detail** view"
@@ -66,7 +66,7 @@ class AuthorsListView(generic.ListView):
     def get_queryset(self):
         return Author.objects.all()
 
-    paginate_by = 5
+    paginate_by = 8
 
 
 # Remember, this class pass as a context variable only one author value
