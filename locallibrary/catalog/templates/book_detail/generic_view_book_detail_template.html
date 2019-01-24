@@ -4,7 +4,7 @@
   <hr>
   <h1>Title: {{ generic_detailed_book.title }}</h1>
   <ul>
-  	<li><p><strong>Author:</strong> <a href="">{{ generic_detailed_book.author }}</a></p></li> <!-- author detail link not yet defined -->
+  	<li><p><strong>Author:</strong> <a href="{% url 'author-detail' generic_detailed_book.author.pk %}">{{ generic_detailed_book.author }}</a></p></li>
   	<li><strong>Summary:</strong></li> <p>{{ generic_detailed_book.summary }}</p>
   	<li><p><strong>ISBN:</strong> {{ generic_detailed_book.isbn }}</p></li>
   	<!--<p><strong>Language:</strong> {{ generic_detailed_book.language }}</p>  -->

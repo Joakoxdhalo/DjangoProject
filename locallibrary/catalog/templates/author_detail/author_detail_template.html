@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <hr>
+  <h1>Author: {{ detailed_author.last_name }}, {{ detailed_author.first_name }}</h1>
+  <p class ="text-muted"> ( {{detailed_author.date_of_birth}} - {{detailed_author.date_of_death}} )</p>
+  <hr>
+  <h2>Books:</h2>
+  <ul>
+    {% for the_book in detailed_author.book_set.all %}
+      {% if the_book.author_id == detailed_author.id %}
+      <li><a href="{% url 'book-detail' the_book.pk %}"> {{the_book.title}} </a> ({{ the_book.id }}) <p> {{ the_book.summary }}</p> </li>
+      {% else %}
+      <p>There are no books in the library.</p>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+{% endblock %}

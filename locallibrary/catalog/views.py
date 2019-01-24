@@ -40,11 +40,6 @@ class BookListView(generic.ListView):
     # queryset = Book.objects.filter(title__icontains='Colombia')[:5]  # Get 5 books containing the word "Colombia" in the title
     template_name = 'books/generic_view_books_template.html'  # Overwritting the template file name
 
-    # Option to overwrite the list object returned in the queryset:
-
-    # def get_queryset(self):
-    #     return Book.objects.filter(title__icontains='war')[:5]
-
     # Option to add some context data in the "class based generic list view function":
     # def get_context_data(self, **kwargs):
     #         # Call the base implementation first to get the context
@@ -54,8 +49,28 @@ class BookListView(generic.ListView):
     #         return context
     paginate_by = 5
 
+
 #  This is a "class based generic **detail** view"
 class BookDetailView(generic.DetailView):
     model = Book
     context_object_name = 'generic_detailed_book'
     template_name = 'book_detail/generic_view_book_detail_template.html'
+
+
+class AuthorsListView(generic.ListView):
+    model = Author
+    context_object_name = 'authors_list'
+    template_name = 'authors/authors_template.html'
+
+    # Option to overwrite the list object returned in the queryset:
+    def get_queryset(self):
+        return Author.objects.all()
+
+    paginate_by = 5
+
+
+# Remember, this class pass as a context variable only one author value
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    context_object_name = 'detailed_author'
+    template_name = 'author_detail/author_detail_template.html'
