@@ -1,49 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% block title %}<title>Local Library</title>{% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <!-- Add additional CSS in static file -->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-        {% block sidebar %}
-          <ul class="sidebar-nav">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'books' %}">All books</a></li>
-            <li><a href="{% url 'authors' %}">All authors</a></li>
+  <head>
+    {% block title %}<title>Local Library</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+      .header {
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        background-color: #f1f1f1;
+      }
+
+      .progress-container {
+        width: 100%;
+        height: 8px;
+        background: #ccc;
+      }
+
+      .progress-bar {
+        height: 8px;
+        background: #4caf50;
+        width: 0%;
+      }
+    </style>
+  </head>
+  <body style="height:1200px">
+    <div class="header">
+      <h2><center>THE LOCAL LIBRARY</center></h2>
+      <h6><center>(By Joaquín Jiménez)</center></h6>
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+      {% block sidebar %}
+      <nav class="navbar navbar-inverse navbar-fixed-top" style="margin-top:94px">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" style="color:white" href="{% url 'index' %}" >Home</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'books' %}" style="color:white">All books</a></li>
+            <li><a href="{% url 'authors' %}" style="color:white">All authors</a></li>
           </ul>
-        {% endblock %}
-      </div>
-      <div class="col-sm-10 ">
-        {% block content %}{% endblock %}
-        {% block pagination %}
-          {% if is_paginated %}
-            <div class="pagination">
-              <span class="page-links">
-                {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-              </span>
-              <span class="page-current">
-                <p> &nbsp &nbsp Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} &nbsp &nbsp</p>
-              </span>
-              <span>
-                {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next page</a>
-                {% endif %}
-              </span>
-            </div>
-          {% endif %}
-        {% endblock %} 
-      </div>
+        </div>
+      </nav>
+      {% endblock %} 
     </div>
-  </div>
-</body>
+
+    <div class="container">
+      <div style="margin-top:154px"></div>        
+      <form class="navbar-form navbar-right well well-sm" style="background-color:#A9F5F2" action="." method="get">
+        <div class="form-group">
+          <label class="checkbox-inline">Search a book by...</label>          
+          <label class="checkbox-inline">
+            <input type="checkbox" value="">Author
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="">Title
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="">Special word
+          </label>      
+          <input type="text" class="form-control" placeholder="Search" name="search">  
+        </div>
+        <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+      </form>
+      <br>
+      <br>
+      <br>
+      {% block content %}
+        <h3>Navbar Forms</h3>
+        <p>Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,</p>
+      {% endblock %}
+      {% block pagination %}
+        {% if is_paginated %}
+          <div class="pagination pagiantion-lg container-fluid">
+            <span>
+              {% if page_obj.has_previous %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous page</a>
+              {% endif %}
+            </span>
+            <span> &nbsp &nbsp Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} &nbsp &nbsp
+            </span>
+            <span>
+              {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next page</a>
+              {% endif %}
+            </span>
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+    <script>
+      // When the user scrolls the page, execute myFunction 
+      window.onscroll = function() {myFunction()};
+
+      function myFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      }
+    </script>
+  </body>
 </html>
