@@ -66,7 +66,7 @@ class AuthorsListView(generic.ListView):
     def get_queryset(self):
         return Author.objects.all()
 
-    paginate_by = 8
+    paginate_by = 5
 
 
 # Remember, this class pass as a context variable only one author value
