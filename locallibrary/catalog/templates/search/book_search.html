@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+
+
+'title_and_author_books': book_default_list,
+        'summary_search_result': summary_search,
+        'the_search': search_box_field,
+        'check_boxes': check_boxes_active,
+
+
+{% block content %}
+    <h1>Book search result</h1>
+    {% if title_and_author_books %}
+        <ul>
+            {% for book in title_and_author_books %}
+            <li>
+                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    {% if summary_search_result.items %}
+        <h3>Match by summary</h3>
+        <ul>
+            {% for book, summary in summary_search_result.items %}
+            <li>
+                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+                <div><p>{{ summary }}</p></div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% if not title_and_author_books%}
+            <p>There are no books in the library.</p>
+        {% endif %}        
+    {% endif %}
+
+{% endblock %}
+
+{% block google_search %}
+    <div style="margin-top:50px"></div>
+    {% if the_search != None and the_search != ""%}
+        <center><a class="btn btn-primary" type="submit" href="{% url 'book-search' %}" method="get" value="{{ the_search }}"><strong>"{{ the_search }}"</strong> results from Google Books...</a></center>
+    {% endif %}
+{% endblock %}
