@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from catalog.models import Book, Author, BookInstance, Genre
 from django.views import generic  # To create the class-based generic list view
+from django.db.models import Q
 
 
 def index(request):
@@ -74,3 +75,62 @@ class AuthorDetailView(generic.DetailView):
     model = Author
     context_object_name = 'detailed_author'
     template_name = 'author_detail/author_detail_template.html'
+
+
+# Just change the "class" by the "def" and the "generic.DetailView" by the "request"
+# to pass from a generic view to a function view
+
+def BookSearch(request):
+    book_default_list = Book.objects.all()
+    search_box_field = request.GET.get('search_box')
+    check_boxes_active = request.GET.getlist('check_boxes')
+    summaries_list = []
+    books_by_summary_list = []
+    redundance = "redundancy" in check_boxes_active
+
+    if search_box_field is not None and search_box_field != "":
+        title_and_author_query = Q(pk__icontains="None")
+        summary_query = Q(pk__icontains="None")
+        if "author" in check_boxes_active:
+            title_and_author_query.add(Q(author__first_name__icontains=search_box_field), Q.OR)
+            title_and_author_query.add(Q(author__last_name__icontains=search_box_field), Q.OR)
+        if "title" in check_boxes_active:
+            title_and_author_query.add(Q(title__icontains=search_box_field), Q.OR)
+        if "word" in check_boxes_active:
+            summary_query.add(Q(summary__icontains=search_box_field), Q.OR)
+
+        summary_query = book_default_list.filter(summary_query)
+        book_default_list = book_default_list.filter(title_and_author_query)
+
+        for book in summary_query.all():
+            if redundance and (book in book_default_list.all()):
+                continue
+            books_by_summary_list.append(book)
+            original_string = book.summary
+            summary_string_lower = original_string.lower()
+            original_string_words_list = original_string.split()
+            lower_case_words_summary_list = summary_string_lower.split()
+
+            for word in lower_case_words_summary_list:
+                if search_box_field in word:
+                    the_string = "..."
+                    lower_index = lower_case_words_summary_list.index(word) - 8
+                    upper_index = lower_case_words_summary_list.index(word) + 8
+                    summary_first_word_index = lower_index if lower_index > 0 else 0
+                    summary_last_word_index = upper_index if upper_index < len(lower_case_words_summary_list) else len(lower_case_words_summary_list)
+
+                    for i in range(summary_first_word_index, summary_last_word_index, 1):
+                        the_string = "{} {}".format(the_string, original_string_words_list[i])
+                    the_string = "{}{}".format(the_string, "...")
+                    summaries_list.append(the_string)
+
+    summary_search = dict(zip(books_by_summary_list, summaries_list))
+
+    context = {
+        'title_and_author_books': book_default_list,
+        'summary_search_result': summary_search,
+        'the_search': search_box_field,
+        'check_boxes': check_boxes_active,
+    }
+
+    return render(request, 'search/book_search.html', context=context)
