@@ -55,23 +55,29 @@
     </div>
 
     <div class="container">
-      <div style="margin-top:154px"></div>        
-      <form class="navbar-form navbar-right well well-sm" style="background-color:#A9F5F2" action="." method="get">
-        <div class="form-group">
-          <label>Search a book by...</label>          
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Author
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Title
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="">Special word
-          </label>      
-          <input type="text" class="form-control" placeholder="Search" name="search">  
-        </div>
-        <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-      </form>
+      <div style="margin-top:154px"></div>
+        {% block search %}        
+          <form class="navbar-form navbar-right well well-sm" style="background-color:#A9F5F2" action="http://127.0.0.1:8000/catalog/search/" method="get">
+            <div class="form-group">
+              <label>Search a book by...</label>          
+              <label class="checkbox-inline">
+                <input type="checkbox" value="author" name="check_boxes" checked>Author
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="title" name="check_boxes" checked>Title
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="word" name="check_boxes" checked>Special word
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="redundancy" name="check_boxes">Avoid redundancy in tool-search results
+              </label>   
+              <input type="search" class="form-control" placeholder="Search" name="search_box">
+            </div>
+            <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+        {% endblock %}
+      <br>
       <br>
       <br>
       <br>
@@ -96,6 +102,8 @@
             </span>
           </div>
         {% endif %}
+      {% endblock %}
+      {% block google_search %}
       {% endblock %}
     </div>
     <script>
