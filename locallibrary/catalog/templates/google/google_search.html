@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h1>Google Books search result</h1>
+    {% if results %}
+        <ul>
+            {% for book in results %}
+                <li>
+                    <p>{{ book.volumeInfo.title }}</p>
+                </li>
+            {% endfor %}
+        </ul>  
+    {% else %}
+        <p>There are no books in the library.</p>
+    {% endif %}
+{% endblock %}
