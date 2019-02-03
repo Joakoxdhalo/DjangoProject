@@ -41,6 +41,8 @@
 {% block google_search %}
     <div style="margin-top:50px"></div>
     {% if the_search != None and the_search != ""%}
-        <center><a class="btn btn-primary" type="submit" href="{% url 'book-search' %}" method="get" value="{{ the_search }}"><strong>"{{ the_search }}"</strong> results from Google Books...</a></center>
+        <form class="form-group" action="http://127.0.0.1:8000/catalog/google_search/" method="get">
+            <center><button class="btn btn-primary" type="submit" value="{{ the_search }}" name="google_search_box"><strong>"{{ the_search }}"</strong> results from Google Books...</button></center>
+        </form>
     {% endif %}
 {% endblock %}
