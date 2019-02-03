@@ -2,6 +2,7 @@ from django.shortcuts import render
 from catalog.models import Book, Author, BookInstance, Genre
 from django.views import generic  # To create the class-based generic list view
 from django.db.models import Q
+from services import services
 
 
 def index(request):
@@ -134,3 +135,12 @@ def BookSearch(request):
     }
 
     return render(request, 'search/book_search.html', context=context)
+
+
+def GoogleSearch(request):
+    search_box_field = request.GET.get('google_search_box')
+    books_list = services.get_books(search_box_field)
+    context = {
+        'results': books_list,
+    }
+    return render(request, 'google/google_search.html', context=context)
