@@ -5,7 +5,21 @@
         <ul>
             {% for book in results %}
                 <li>
-                    <p>{{ book.volumeInfo.title }}</p>
+                    <a>{{ book.volumeInfo.title }}</a>
+                    {% if book.volumeInfo.authors %}
+                        <span>({% for author in book.volumeInfo.authors %}{{ author }} - {% endfor %})</span>
+                    {% else %}
+                        <span class="text-danger">No author/s available <br></span>
+                    {% endif %}
+                    {% if  book.volumeInfo.description%}
+                        <p>{{ book.volumeInfo.description }}</p>
+                    {% else %}
+                        {% if book.searchInfo.textSnippet %}
+                            <p>{{ book.searchInfo.textSnippet }}</p>
+                        {% else %}
+                            <p class="text-danger">There is no summary available</p>
+                        {% endif %}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>  
