@@ -1,6 +1,14 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
+<style>
+.div1 {
+  margin: 10px;
+  border: 1px solid #F8E0E0;
+  overflow: hidden;
+}
+</style>
+
     <h1>Google Books search result</h1>
     {% if results %}
         <ul>
@@ -12,18 +20,19 @@
                     {% else %}
                         <span class="text-danger">No author/s available</span>
                     {% endif %}
-                    {% if  book.volumeInfo.description%}
-                        <p>{{ book.volumeInfo.description }}</p>
-                    {% else %}
-                        {% if book.searchInfo.textSnippet %}
-                            <br>
-                            {% autoescape off %}
-                                <p>{{ book.searchInfo.textSnippet }}</p>
-                            {% endautoescape %}                            
-                        {% else %}
-                            <p class="text-danger">There is no summary available</p>
-                        {% endif %}
-                    {% endif %}
+                    <div class="div1"><img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="The image of this title could not load properly" style="float:left;width:110px; margin: 0px 30px 20px 0px;" >
+                        {% autoescape off %}
+                            {% if book.volumeInfo.description%}
+                                {{ book.volumeInfo.description }}
+                            {% else %}
+                                {% if book.searchInfo.textSnippet %}
+                                    {{ book.searchInfo.textSnippet }}
+                                {% else %}
+                                    <p class="text-danger">There is no summary available</p>
+                                {% endif %}
+                            {% endif %}
+                        {% endautoescape %}
+                    </div>
                 </li>
             {% endfor %}
         </ul>  
