@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% block content %}
+
     <h1>Google Books search result</h1>
     {% if results %}
         <ul>
@@ -9,13 +10,16 @@
                     {% if book.volumeInfo.authors %}
                         <span>({% for author in book.volumeInfo.authors %}{{ author }} - {% endfor %})</span>
                     {% else %}
-                        <span class="text-danger">No author/s available <br></span>
+                        <span class="text-danger">No author/s available</span>
                     {% endif %}
                     {% if  book.volumeInfo.description%}
                         <p>{{ book.volumeInfo.description }}</p>
                     {% else %}
                         {% if book.searchInfo.textSnippet %}
-                            <p>{{ book.searchInfo.textSnippet }}</p>
+                            <br>
+                            {% autoescape off %}
+                                <p>{{ book.searchInfo.textSnippet }}</p>
+                            {% endautoescape %}                            
                         {% else %}
                             <p class="text-danger">There is no summary available</p>
                         {% endif %}
