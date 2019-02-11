@@ -36,3 +36,8 @@ urlpatterns += [
 ]  # Here what we do is redirect all the root views to root/catalog in the website
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
