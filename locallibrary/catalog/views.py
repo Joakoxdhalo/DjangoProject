@@ -20,6 +20,13 @@ def index(request):
     num_genres = Genre.objects.all().count()
     special_month_features = Book.objects.filter(author__last_name__exact='García Márquez').count()
 
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    # The following lines are if i want to restart the num_visits count
+    # request.session['num_visits'] = 0
+    # request.session.modified = True
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -27,6 +34,7 @@ def index(request):
         'num_authors': num_authors,
         'num_genres': num_genres,
         'special_month_features': special_month_features,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
