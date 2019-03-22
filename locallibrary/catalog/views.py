@@ -5,6 +5,11 @@ from django.db.models import Q
 from services import services
 
 
+def probe(request):
+    context = {}
+    return render(request, 'probe.html', context=context)
+
+
 def index(request):
     """View function for home page of site."""
 

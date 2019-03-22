@@ -13,4 +13,5 @@ urlpatterns = [
     re_path(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
     path('search/', views.BookSearch, name='book-search'),
     path('google_search/', views.GoogleSearch, name='google-search'),
+    path('probe/', views.probe, name='probe'),
 ]

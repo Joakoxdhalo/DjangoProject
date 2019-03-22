@@ -7,9 +7,11 @@
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
       .header {
         position: fixed;
@@ -21,68 +23,216 @@
 
       .progress-container {
         width: 100%;
-        height: 8px;
-        background: #ccc;
+        height: 0.3vw;
+        background: #D8D8D8;
       }
 
       .progress-bar {
-        height: 8px;
-        background: #4caf50;
+        height: 0.3vw;
+        background: #2E64FE;
         width: 0%;
       }
-    </style>
+
+      .the_content {
+        position: absolute;
+         padding-top: 100px;
+         margin-top: 20px;
+      }
+
+      .mt-6 {
+        margin-top: ($spacer * 3.5) !important;
+      }
+      .navbar {
+        position: fixed;
+        top: calc(6.69vw + 6.69vh);
+        width: 100%;
+        z-index: 1;
+      }
+
+        
+
+@media (min-width: 751px) {
+      .navbar {
+          height:50px;
+      }
+      .responsive-main {
+          margin-top: calc(6.7vw + 6.7vh + 80px)
+      }
+    }
+
+@media (max-width: 750px) {
+      .responsive-main {
+          margin-top: calc(6.7vw + 6.7vh + 180px)
+      }
+    }
+
+{%comment%}
+  <style>
+    @media (min-width: 576px) {
+      body {
+        padding-top: 0px;
+      }
+    }
+    @media (min-width: 768px) {
+      .navbar {
+          height:50px;
+      }
+      body {
+        padding-top: 0px;
+      }
+    }
+    @media (min-width: 992px) {
+      .navbar {
+          height:50px;
+      }
+      body {
+        padding-top: 100px;
+      }
+    }
+    @media (min-width: 1200px) {
+      .navbar {
+          height:50px;
+      }
+      body {
+        padding-top: 140px;
+      }
+    }
+    @media (min-width: 1400px) {
+      .navbar {
+          height:50px;
+      }
+      body {
+        padding-top: 400px;
+      }
+    }
+}
+
+
+{%endcomment%}
+
+</style>
+
+
   </head>
-  <body style="height:1200px">
+
+
+
+{%comment%}
+4vw
+2vw
+{%endcomment%}
+
+
+  <body style="height:3500px;">
     <div class="header">
-      <h2><center>THE LOCAL LIBRARY</center></h2>
-      <h6><center>(By Joaquín Jiménez)</center></h6>
+      <a style="font-size: calc(3vw + 3vh) ; font-family: Brush Script MT, serif;"><center>THE LOCAL LIBRARY</center></a>
+      <a style="font-size: calc(1.4vw + 1.4vh); font-family: Brush Script MT, serif;"><center>(By Joaquín Jiménez Caviedes)</center></a>
       <div class="progress-container">
         <div class="progress-bar" id="myBar"></div>
       </div>
-      {% block sidebar %}
-      <nav class="navbar navbar-inverse navbar-fixed-top" style="margin-top:94px">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" style="color:white" href="{% url 'index' %}" >Home</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'books' %}" style="color:white">All books</a></li>
-            <li><a href="{% url 'authors' %}" style="color:white">All authors</a></li>
-          </ul>
-        </div>
-      </nav>
-      {% endblock %} 
+      
     </div>
 
-    <div class="container">
-      <div style="margin-top:154px"></div>
-        {% block search %}
-          <center>
-            <form class="navbar-form well well-sm" style="background-color:#A9F5F2; display: inline-block;" action="http://127.0.0.1:8000/catalog/search/" method="get">
-              <div class="form-group">
-                <label>Search a book by...</label>          
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="author" name="check_boxes" checked>Author
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="title" name="check_boxes" checked>Title
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="word" name="check_boxes" checked>Special word
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="redundancy" name="check_boxes">Avoid redundancy in tool-search results
-                </label>   
-                <input type="search" class="form-control" placeholder="Search" name="search_box">
+
+{% block sidebar %}
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark navbar-fixed">
+          <div class="container-fluid">
+
+
+
+              <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target=".dual-nav">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+
+              <div class="navbar-collapse collapse dual-nav w-50 order-1 order-md-0">
+                  <ul class="navbar-nav"> 
+                      <li class="nav-item active">
+                          <a class="nav-link pl-0" href="{% url 'index' %}">Home <span class="sr-only">Home</span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'books' %}">All books</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'authors' %}">All authors</a>
+                      </li>
+                  </ul>
               </div>
-              <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </form>
-          </center>
+
+
+
+
+{#<div class="order-2 order-md-1 position-relative w-50">#}
+  {#      <a class="navbar-nav text-center " href="#">#}
+    {#        <img src="//placehold.it/120/ccff00" class="rounded-circle">#}
+      {#  </a>#}
+{#</div>#}
+
+
+
+                {#<a href="/" class="navbar-brand mx-auto d-block text-center order-md-1">Brand</a> #}
+
+
+
+<a class="navbar-brand mx-auto text-center order-md-1" href="#">
+  <img src="//placehold.it/120/ccff00" class="rounded-circle" style="width: 120px;">
+</a>
+
+
+              <div class="navbar-collapse collapse dual-nav w-50 order-2">
+                  <ul class="nav navbar-nav ml-auto">
+                      <li class="nav-item"><a class="nav-link" href=""><i class="fab fa-twitter"></i></a></li>
+                      <li class="nav-item"><a class="nav-link" href=""><i class="fab fa-github"></i></a></li>
+                  </ul>
+              </div>
+
+
+
+
+          </div>
+        </nav>    
+      {% endblock %}
+
+
+
+
+    <main class="responsive-main">
+    <div class="container" >
+        {% block search %}
+          <div style="margin: 80px 40px 80px; border-style: outset; border-color: #AED6F1; border-width: 3px; border-radius: 25px; background-color:#A9F5F2;">
+            <center>
+              <form class="form-inline well well-sm justify-content-center"  action="http://127.0.0.1:8000/catalog/search/" method="get">
+                <label class="mb-2 mr-sm-4 my-sm-2">Search a book by...</label> 
+                <div class="form-check form-check-inline mb-2 mr-sm-2 my-sm-2">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="check_boxes" value="author" checked>
+                  <label class="form-check-label" for="inlineCheckbox1">Author</label>
+                </div>
+                <div class="form-check form-check-inline mb-2 mr-sm-2 my-sm-2">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="check_boxes" value="title" checked>
+                  <label class="form-check-label" for="inlineCheckbox2">Title</label>
+                </div>
+                <div class="form-check form-check-inline mb-2 mr-sm-2 my-sm-2">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="check_boxes" value="word" checked>
+                  <label class="form-check-label" for="inlineCheckbox3">Special word</label>
+                </div>
+                <div class="form-check form-check-inline mb-2 mr-sm-2 my-sm-2">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="check_boxes" value="redundancy">
+                  <label class="form-check-label" for="inlineCheckbox4">Avoid redundancy in tool-search results</label>
+                </div>
+                <div class="input-group mb-2 mr-sm-2 my-sm-2">                    
+                  <input type="search" placeholder="Search" aria-label="Text input with checkbox" name="search_box">
+                  <div class="input-group-prepend">
+                    <button type="btn btn-success" type="submit" ><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </center>
+          </div>
         {% endblock %}
-      <br>
-      <br>
-      <br>
-      <br>
+
+
+
       {% block content %}
         <h3>Navbar Forms</h3>
         <p>Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,</p>
