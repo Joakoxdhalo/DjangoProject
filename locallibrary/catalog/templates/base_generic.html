@@ -40,15 +40,6 @@
         width: 0%;
       }
 
-      .the_content {
-        position: absolute;
-         padding-top: 100px;
-         margin-top: 20px;
-      }
-
-      .mt-6 {
-        margin-top: ($spacer * 3.5) !important;
-      }
       .navbar {
         position: fixed;
         top: calc(6.69vw + 6.69vh);
@@ -125,8 +116,11 @@
 
 
 {%comment%}
-4vw
-2vw
+@media (min-width: 576px) {}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {}
+@media (min-width: 1200px) {}
+@media (min-width: 1400px) {}
 {%endcomment%}
 
 
@@ -144,13 +138,9 @@
         <nav class="navbar navbar-dark navbar-expand-md bg-dark navbar-fixed">
           <div class="container-fluid">
 
-
-
               <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target=".dual-nav">
                   <span class="navbar-toggler-icon"></span>
               </button>
-
-
 
               <div class="navbar-collapse collapse dual-nav w-50 order-1 order-md-0">
                   <ul class="navbar-nav"> 
@@ -166,25 +156,9 @@
                   </ul>
               </div>
 
-
-
-
-{#<div class="order-2 order-md-1 position-relative w-50">#}
-  {#      <a class="navbar-nav text-center " href="#">#}
-    {#        <img src="//placehold.it/120/ccff00" class="rounded-circle">#}
-      {#  </a>#}
-{#</div>#}
-
-
-
-                {#<a href="/" class="navbar-brand mx-auto d-block text-center order-md-1">Brand</a> #}
-
-
-
 <a class="navbar-brand mx-auto text-center order-md-1" href="#">
   <img src="//placehold.it/120/ccff00" class="rounded-circle" style="width: 120px;">
 </a>
-
 
               <div class="navbar-collapse collapse dual-nav w-50 order-2">
                   <ul class="nav navbar-nav ml-auto">
@@ -192,9 +166,6 @@
                       <li class="nav-item"><a class="nav-link" href=""><i class="fab fa-github"></i></a></li>
                   </ul>
               </div>
-
-
-
 
           </div>
         </nav>    
