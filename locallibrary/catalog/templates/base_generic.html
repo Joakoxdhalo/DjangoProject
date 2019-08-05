@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% block title %}<title>Local Library</title>{% endblock %}
+    {% block title %}<title>The Local Library</title>{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is a local library used to aply Django knowledge and improve HTML, CSS, Javascript and Python development skills.">
+    <meta name="google" value="notranslate">
+    <base target="_self">
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
       .header {
         position: fixed;
@@ -200,7 +200,7 @@
     <main class="responsive-main">
     <div class="container" >
         {% block search %}
-          <div style="margin: 80px 40px 80px; border-style: outset; border-color: #AED6F1; border-width: 3px; border-radius: 25px; background-color:#A9F5F2;">
+          <div style="margin: 30px 40px; border-style: outset; border-color: #AED6F1; border-width: 3px; border-radius: 25px; background-color:#A9F5F2;">
             <center>
               <form class="form-inline well well-sm justify-content-center"  action="http://127.0.0.1:8000/catalog/search/" method="get">
                 <label class="mb-2 mr-sm-4 my-sm-2">Search a book by...</label> 
@@ -232,7 +232,6 @@
         {% endblock %}
 
 
-
       {% block content %}
         <h3>Navbar Forms</h3>
         <p>Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,Example, Example, Example, Example, Example, Example ,</p>
@@ -258,8 +257,14 @@
       {% block google_search %}
       {% endblock %}
     </div>
+
+    <!--scripts loaded here-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-      // When the user scrolls the page, execute myFunction 
+      // When the user scrolls the page, execute myFunction
       window.onscroll = function() {myFunction()};
 
       function myFunction() {
