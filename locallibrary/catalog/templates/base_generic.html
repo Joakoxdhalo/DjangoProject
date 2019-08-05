@@ -15,12 +15,17 @@
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     
     <style>
+      body {
+        height:3500px;
+        background-color: #eeeeee;
+      }
+
       .header {
         position: fixed;
         top: 0;
         z-index: 1;
         width: 100%;
-        background-color: #f1f1f1;
+        background-color: #bbbbbb;
       }
 
       .progress-container {
@@ -31,7 +36,7 @@
 
       .progress-bar {
         height: 0.3vw;
-        background: #2E64FE;
+        background: #FF0000;
         width: 0%;
       }
 
@@ -125,14 +130,13 @@
 {%endcomment%}
 
 
-  <body style="height:3500px;">
+  <body>
     <div class="header">
       <a style="font-size: calc(3vw + 3vh); font-family: 'Great Vibes', cursive;"><center>The Local Library</center></a>
       <a style="font-size: calc(1.4vw + 1.4vh); font-family: 'Great Vibes', serif;"><center>(By Joaquín Jiménez Caviedes)</center></a>
       <div class="progress-container">
         <div class="progress-bar" id="myBar"></div>
-      </div>
-      
+      </div>      
     </div>
 
 
