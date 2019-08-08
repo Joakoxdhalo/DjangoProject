@@ -57,6 +57,51 @@
             margin-top: calc(6.7vw + 6.7vh + 180px)
         }
       }
+
+{%comment%}
+Lo Nuevo del Navbar
+{%endcomment%}
+
+      .bg-dark {
+        background-color:#000000 !important;
+      }
+      .navbar-dark .navbar-toggler {
+        border-color: #00f0fb;
+        background-color: #6f7070;
+        float: left;
+      }
+      .navbar-dark .navbar-nav .nav-link,
+      .navbar-dark .navbar-nav .nav-link:focus {
+        background-color: inherit;
+        color: #68fbfb;
+        font-size: 22px;
+        padding: 4px;
+        margin: 4px;
+        float: left;
+        border-bottom: 3px solid #000000;
+        transition: all 0.5s;
+      }
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: #ffffff;
+        background-color: #383838;
+        border-radius: 15px;
+        border-bottom: 3px solid #8EFF0D;
+        padding: 4px;
+        margin: 4px;
+        transition: none;
+      }
+      .navbar-dark .navbar-nav .active>.nav-link,
+      .navbar-dark .navbar-nav .nav-link.active,
+      .navbar-dark .navbar-nav .nav-link.show,
+      .navbar-dark .navbar-nav .show>.nav-link {
+        color: #ffffff;
+        background-color: #6f7070;
+        border-radius: 15px;
+        border-bottom: 3px solid #FF0000;  
+        font-size: 24px;
+        padding: 4px;
+        margin: 4px;
+      }
     </style>
   </head>
 
@@ -84,18 +129,18 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
 
-              <div class="navbar-collapse collapse data_to_collapse w-50 order-1 order-md-0">
-                  <ul class="navbar-nav"> 
-                      <li class="nav-item active">
-                          <a class="nav-link pl-0" href="{% url 'index' %}">Home <span class="sr-only">Home</span></a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{% url 'books' %}">All books</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{% url 'authors' %}">All authors</a>
-                      </li>
-                  </ul>
+              <div class="navbar-collapse w-100 data_to_collapse order-1 order-sm-1 order-md-0 order-lg-0 collapse">
+                <ul class="navbar-nav mr-auto flex-row flex-nowrap justify-content-start">
+                  <li class="nav-item active">
+                    <a class="nav-link text-nowrap" href="{% url 'index' %}">Home<span class="sr-only">Home</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{% url 'books' %}">All books</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{% url 'authors' %}">All authors</a>
+                  </li>
+                </ul>
               </div>
 
 
