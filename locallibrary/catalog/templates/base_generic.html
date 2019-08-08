@@ -50,11 +50,34 @@
         .responsive-main {
             margin-top: calc(6.7vw + 6.7vh + 90px)
         }
+        .dropdown .Mymarker .fa-caret-down {
+          display: inline block;
+        }
+        .dropdown .Mymarker .fa-caret-right {
+          display: none;
+        }
+        .dropdown-content {
+          position: absolute;
+          top: 47.9px;
+          left: 0px;
+        }
       }
 
       @media (max-width: 767.9px) {
         .responsive-main {
             margin-top: calc(6.7vw + 6.7vh + 180px)
+        }
+        .dropdown .Mymarker .fa-caret-down {
+          display: none;
+        }
+        .dropdown .Mymarker .fa-caret-right {
+          display: inline block;
+        }
+        .dropdown-content {
+          position: absolute;
+          top: -10px;
+          left: 77px;
+          box-shadow: 0px 0px 30px 0px #68fbfb !important;
         }
       }
 
@@ -102,6 +125,76 @@ Lo Nuevo del Navbar
         padding: 4px;
         margin: 4px;
       }
+      .dropdown {
+        overflow: show;
+      }
+      .dropdown .dropbtn {
+        background-color: inherit;
+        font-family: inherit;
+        color: #68fbfb;
+        font-size: 22px;
+        padding: 4px;
+        margin: 4px;
+        border: none;
+        transition: all 0.5s;
+        box-shadow: none;
+        border-bottom: 3px solid #000000;
+        float: left;
+      }
+      .dropdown:hover .dropbtn {
+        color: #ffffff;
+        background-color: #383838;
+        border-radius: 15px;
+        border-bottom: 3px solid #8EFF0D;
+        padding: 4px;
+        margin: 4px;
+        transition: none;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block !important;
+      }
+      .dropdown-header {
+        display:block;
+        padding: 2px 30px;
+        margin-bottom: 0;
+        font-size: 15px;
+        text-align: center;
+        color: #bcd5dd;
+        white-space:nowrap
+      }
+      .dropdown-divider {
+        height: 0;
+        margin: .5rem 0;
+        overflow:hidden;
+        border-top: 1px solid #6f7070;
+      }
+      .dropdown-content {
+        display: none;
+        background-color: #000000;
+        min-width: 160px;
+        box-shadow: 0px 15px 30px 0px #68fbfb;
+        z-index: 1;
+        border: 1px solid #6f7070;
+        border-radius: 15px;
+        padding: 5px 0;
+        margin: 0px;
+      }
+      .dropdown-content a {
+        border-radius: 15px;
+        float: none;
+        color: #68fbfb;
+        font-size: 22px;
+        padding: 4px 10px;
+        text-decoration: none;
+        display: block;
+        transition: all 0.5s;
+      }
+      .dropdown-content a:hover {
+        background-color: #383838; 
+        color: #ffffff;
+        transition: none;
+      }
+
     </style>
   </head>
 
@@ -139,11 +232,27 @@ Lo Nuevo del Navbar
         </ul>
       </div>
 
-      <div class="navbar-collapse collapse data_to_collapse w-50 order-2">
-          <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item"><a class="nav-link" href=""><i class="fab fa-twitter"></i></a></li>
-              <li class="nav-item"><a class="nav-link" href=""><i class="fab fa-github"></i></a></li>
+      <div class="navbar-collapse collapse data_to_collapse order-2 order-sm-2 order-md-1 order-lg-1 w-50 justify-content-center">
+        <div class="dropdown text-nowrap">
+          <button class="dropbtn Mymarker">More 
+            <i class="fa fa-caret-down"></i>
+            <i class="fa fa-caret-right"></i>
+          </button>
+          <ul class="dropdown-content">
+            <li class="dropdown-header">The library</li>
+            <a href=""><i class="fas fa-phone" style="padding:8px"></i>Contact</a>
+            <a href=""><i class="far fa-comment" style="padding:8px"></i>Feedback</a>
+            <a href=""><i class="fas fa-share-square" style="padding:8px"></i>Share</a>
+            <a href=""><i class="far fa-address-card" style="padding:8px"></i>About Us</a>
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-header">Media</li>
+            <div class="d-flex flex-nowrap mt-2 justify-content-center">
+              <a href="" style="padding:8px;" class="text-nowrap inline "><i class="fab fa-twitter"></i></a>
+              <a href="" style="padding:8px;" class="text-nowrap"><i class="fab fa-facebook"></i></a>
+              <a href="" style="padding:8px;" class="text-nowrap"><i class="fab fa-whatsapp"></i></a>
+            </div>
           </ul>
+        </div>        
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".data_to_collapse" aria-expanded="false">
@@ -155,7 +264,8 @@ Lo Nuevo del Navbar
           <img src="http://www.pngmart.com/files/1/Open-Book-Transparent-Background-PNG.png" style="width: 180px;">
         </a>
       </div>
-    </nav>    
+
+    </nav>
 {% endblock %}
 
     <main class="responsive-main">
