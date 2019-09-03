@@ -286,6 +286,19 @@ Lo Nuevo del Navbar
       </div>      
     </div>
 
+{% block Chatbot %}
+    <button class="chatbot-open-button" onclick="openChatBot()">Chat</button>
+    <div class="chat-popup" id="the_chatbot_form_name">
+      <form action="/action_page.php" class="chatbot-container">
+        <h1>Chat</h1>
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." name="msg" required></textarea>
+        <button type="submit" class="btn">Send</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+{% endblock %}
+
 {% block sidebar %}
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
@@ -358,19 +371,6 @@ Lo Nuevo del Navbar
     </nav>
 {% endblock %}
 
-
-{% block Chatbot %}
-    <div class="chat-popup" id="the_chatbot_form_name">
-      <form action="/action_page.php" class="chatbot-container">
-        <h1>Chat</h1>
-        <label for="msg"><b>Message</b></label>
-        <textarea placeholder="Type message.." name="msg" required></textarea>
-        <button type="submit" class="btn">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-{% endblock %}
-
     <main class="responsive-main">
     <div class="container" >
         {% block search %}
@@ -403,6 +403,10 @@ Lo Nuevo del Navbar
               </form>
             </center>
           </div>
+
+
+
+
         {% endblock %}
 
 
@@ -430,6 +434,7 @@ Lo Nuevo del Navbar
       {% endblock %}
       {% block google_search %}
       {% endblock %}
+
     </div>
 
     <!--scripts loaded here-->
